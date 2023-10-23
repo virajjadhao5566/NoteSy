@@ -33,12 +33,12 @@ const AccountProfile = ({ user, btnTitle }: Props) => {
     const form = useForm<z.infer<typeof userValidation>>({
         resolver: zodResolver(userValidation),
         defaultValues: {
-            profile_photo: user?.image || '',
-            name: user?.name || '',
-            username: user?.username || '',
-            bio: user?.bio || ''
-        }
-    })
+          profile_photo: user?.image ? user.image : "",
+          name: user?.name ? user.name : "",
+          username: user?.username ? user.username : "",
+          bio: user?.bio ? user.bio : "",
+        },
+      });
     const handleImage = (e: ChangeEvent, fieldChange: (value: string) => void) => {
         e.preventDefault()
     }
@@ -89,10 +89,10 @@ const AccountProfile = ({ user, btnTitle }: Props) => {
                 />
                 <FormField
                     control={form.control}
-                    name="profile_photo"
+                    name='name'
                     render={({ field }) => (
-                        <FormItem className='flex flex-col gap-3 w-full'>
-                            <FormLabel className='text-light-1'>
+                        <FormItem className='flex w-full flex-col gap-3'>
+                            <FormLabel className='text-base-semibold text-light-2'>
                                 Name
                             </FormLabel>
                             <FormControl>
@@ -108,7 +108,7 @@ const AccountProfile = ({ user, btnTitle }: Props) => {
                 />
                 <FormField
                     control={form.control}
-                    name="profile_photo"
+                    name="username"
                     render={({ field }) => (
                         <FormItem className='flex flex-col gap-3 w-full'>
                             <FormLabel className='text-light-1'>
@@ -127,14 +127,14 @@ const AccountProfile = ({ user, btnTitle }: Props) => {
                 />
                 <FormField
                     control={form.control}
-                    name="profile_photo"
+                    name="bio"
                     render={({ field }) => (
                         <FormItem className='flex flex-col gap-3 w-full'>
                             <FormLabel className='text-light-1'>
                                 Bio
                             </FormLabel>
                             <FormControl>
-                                <Textarea 
+                                <Textarea
                                     rows={10}
                                     className='account-form_input no-focus'
                                     {...field}
